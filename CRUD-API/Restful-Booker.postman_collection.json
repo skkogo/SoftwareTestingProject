@@ -56,7 +56,23 @@
 									"    var responseBody= pm.response.json();\r",
 									"    var token= responseBody.token;\r",
 									"    pm.expect(token).to.exist;\r",
-									"})"
+									"})\r",
+									"var responseBody=pm.response.json();\r",
+									"console.log(responseBody.token);\r",
+									"pm.collectionVariables.set(\"BookingToken\", responseBody.token);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -227,6 +243,9 @@
 				{
 					"name": "RegFullUpdateOfBooking",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -239,7 +258,7 @@
 							},
 							{
 								"key": "Cookie",
-								"value": "token=34e7aef0389555c",
+								"value": "token= {{BookingToken}}",
 								"type": "text"
 							}
 						],
@@ -1390,6 +1409,10 @@
 		},
 		{
 			"key": "Token",
+			"value": ""
+		},
+		{
+			"key": "BookingToken",
 			"value": ""
 		}
 	]
